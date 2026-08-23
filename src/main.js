@@ -1,5 +1,6 @@
 const { invoke } = window.__TAURI__.core;
 
+const heading = document.querySelector(".heading");
 
 const startBtn = document.querySelector(".start-btn");
 const pauseBtn = document.querySelector(".pause-btn");
@@ -15,12 +16,15 @@ const timer = document.querySelector(".timer");
 
 
 let myInterval;
-let totalSeconds = 1500;
+let totalSeconds = 25 * 60;
+
+let breakSeconds = 5 * 60;
 
 function updateDisplay() {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
 
+  // add a zero if seconds are less than 10
   timer.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
 }
@@ -63,7 +67,10 @@ function startTimer() {
     } else {
       clearInterval(myInterval);
       myInterval = null;
+
       alert('Times up');
+      heading.textContent = "Time's up!"
+
     }
   }, 1000);
 }
@@ -77,6 +84,8 @@ function resetTimer() {
 
   clearInterval(myInterval);
   timer.innerHTML = "25:00";
+
+  heading.textContent = "Hi again!"
 }
 
 
