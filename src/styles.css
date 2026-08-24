@@ -49,6 +49,7 @@ img {
   z-index: -2;
   position: absolute;
   top: 0px;
+  right: -180px;
 }
 
 .heading {
@@ -90,8 +91,28 @@ img {
   flex-direction: row;
   gap: 24px;
   align-self: center;
-  position: relative;
-  top: -74px;
+  position: absolute;
+  top: 350px;
+}
+
+.btn-container-3 {
+  visibility: hidden;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-self: center;
+  position: absolute;
+  bottom: 148px;
+}
+
+.btn-container-4 {
+  visibility: hidden;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-self: center;
+  position: absolute;
+  bottom: 148px;
 }
 
 .btn {

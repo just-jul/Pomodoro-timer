@@ -8,9 +8,8 @@ const resetBtn = document.querySelector(".reset-btn");
 
 const resumeBtn = document.querySelector(".resume-btn");
 
-const startContainer = document.querySelector(".btn-container");
-
-const pauseResetCont = document.querySelector(".btn-container-2")
+const pauseResetCont = document.querySelector(".btn-container-2");
+const resumeResetCont = document.querySelector(".btn-container-3");
 
 const timer = document.querySelector(".timer");
 
@@ -32,25 +31,31 @@ function updateDisplay() {
 startBtn.addEventListener("click", (e) =>  {
   startBtn.style.visibility = "hidden";
   pauseResetCont.style.visibility = "visible";
+  resumeResetCont.style.visibility = "hidden";
 
   startTimer();
 
   
 });
 
+const pauseBtnLabel = pauseBtn.innerHTML.trim();
+
 pauseBtn.addEventListener("click", (e) => {
+  pauseResetCont.style.visibility = "hidden";
+  startBtn.style.visibility = "hidden";
+  resumeResetCont.style.visibility = "visible";
+
+  pauseTimer();
+});
+
+resumeBtn.addEventListener("click", (e) => {
+  resumeResetCont.style.visibility = "hidden";
   pauseResetCont.style.visibility = "visible";
   startBtn.style.visibility = "hidden";
 
-  if (pauseBtn.innerHTML === "Resume") {
-    pauseBtn.innerHTML = "Pause";
-    startTimer();
-  } else {
-    pauseBtn.innerHTML = "Resume";
-    pauseTimer();
-  }
+  startTimer();
 
-})
+});
 
 resetBtn.addEventListener("click", (e) => {
   pauseResetCont.style.visibility = "hidden";
@@ -71,6 +76,8 @@ function startTimer() {
       alert('Times up');
       heading.textContent = "Time's up!"
 
+      pauseBtn.innerHTML = "Break";
+
     }
   }, 1000);
 }
@@ -85,7 +92,14 @@ function resetTimer() {
   clearInterval(myInterval);
   timer.innerHTML = "25:00";
 
-  heading.textContent = "Hi again!"
+  totalSeconds = 25 * 60;
+
+  heading.textContent = "Hi again!";
+  pauseBtn.innerHTML = "Pause";
+}
+
+function setBreak() {
+  totalSeconds = breakSeconds;
 }
 
 
